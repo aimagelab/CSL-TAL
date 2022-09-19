@@ -32,7 +32,12 @@ Run ``python main.py`` to train the model.
 - [X] Removed smoothness loss as it was in conflict with the alignment loss. This leads to better and more stable results.
 - [x] Add support for gated attention [1] leading to a +3% improvement in AP frame-level.
 
-To replicate the results of the paper, run ``python main.py --batch-size 8 --alpha 2e-8 --gamma 0.5 --no-gated-attention``
+To replicate the results of the paper, run
+
+```bash
+python main.py --batch-size 8 --alpha 2e-8 --gamma 0.5 --no-gated-attention
+```
+
 ---
 ## References
 [1] Ilse, Maximilian and Tomczak, Jakub and Welling, Max. Attention-based deep multiple instance learning. International conference on machine learning. PMLR, 2018.
