@@ -34,9 +34,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--num-samples", type=int, default=2, help="Number of samples to use")
     parser.add_argument("--max-seqlen", type=int, default=600, help="Maximum sequence length")
 
-    parser.add_argument("--alpha", type=float, default=2e-8, help="Alpha parameter for smoothness loss")
+    parser.add_argument("--alpha", type=float, default=0, help="Alpha parameter for smoothness loss")
     parser.add_argument("--beta", type=float, default=2e-3, help="Beta parameter for sparsity loss")
-    parser.add_argument("--gamma", type=float, default=0.5, help="Gamma parameter for mse")
+    parser.add_argument("--gamma", type=float, default=0.55, help="Gamma parameter for mse")
     parser.add_argument("--delay-align", type=int, default=0, help="Delay align loss (n_epochs)")
     parser.add_argument("--detach", action="store_true", help="Detach one of the samples in align loss")
     parser.add_argument("--pseudo-label", action="store_true", help="Use pseudo label")
@@ -50,9 +50,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--scheduler", type=str, default="step", choices=["cosine", "warmup", "step"])
 
     parser.add_argument("--transformer", type=int, default=0)
-    parser.add_argument("--gated-attention", default=False, action="store_true")
+    parser.add_argument("--gated-attention", default=True, action="store_true")
+    parser.add_argument("--no-gated-attention", dest="gated-attention", action="store_false")
     parser.add_argument("--sample-window", type=int, default=3)
-    parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--batch-size", type=int, default=16)
 
     parser.add_argument("--log", action="store_true")
     parser.add_argument("--test-only", action="store_true")

@@ -1,10 +1,11 @@
 # Consistency-based Self-Supervised Learning for Temporal Anomaly Localization
 This repository contains Pytorch code for the [WCPA ECCV22](https://sites.google.com/view/wcpa2022/) paper "Consistency-based Self-Supervised Learning for Temporal Anomaly Localization" [[arXiv](https://arxiv.org/abs/2208.05251)]
-
-![CSL-TAL - Overview](images/model.png)
+<p align="center">
+<img src="images/model.png" width=80%/>
+</p>
 
 ```bibtex
-@inproceedings{panarello2022consistency,
+@inproceedings{panariello2022consistency,
     title = {Consistency-based Self-supervised Learning for Temporal Anomaly Localization},
     author = {Panariello, Aniello and Porrello, Angelo and Calderara, Simone and Cucchiara, Rita},
     booktitle = {Proceedings of the European Conference on Computer Vision (ECCV) Workshops},
@@ -28,8 +29,10 @@ Run ``python main.py`` to train the model.
 
 ## Improvements over the original paper
 
+- [X] Removed smoothness loss as it was in conflict with the alignment loss. This leads to better and more stable results.
 - [x] Add support for gated attention [1] leading to a +3% improvement in AP frame-level.
 
+To replicate the results of the paper, run ``python main.py --batch-size 8 --alpha 2e-8 --gamma 0.5 --no-gated-attention``
 ---
 ## References
 [1] Ilse, Maximilian and Tomczak, Jakub and Welling, Max. Attention-based deep multiple instance learning. International conference on machine learning. PMLR, 2018.
