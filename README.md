@@ -1,5 +1,9 @@
 # Consistency-based Self-Supervised Learning for Temporal Anomaly Localization
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/consistency-based-self-supervised-learning/anomaly-detection-in-surveillance-videos-on-2)](https://paperswithcode.com/sota/anomaly-detection-in-surveillance-videos-on-2?p=consistency-based-self-supervised-learning)
+
 This repository contains Pytorch code for the [WCPA ECCV22](https://sites.google.com/view/wcpa2022/) paper "Consistency-based Self-Supervised Learning for Temporal Anomaly Localization" [[arXiv](https://arxiv.org/abs/2208.05251)]
+
 <p align="center">
 <img src="images/model.png" width=80%/>
 </p>
