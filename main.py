@@ -116,7 +116,7 @@ def get_mask(features: torch.Tensor) -> torch.Tensor:
     if lengths == 1:
         return torch.ones(total_len, dtype=torch.bool)
     for i, f in enumerate(features):
-        if len(mask) == 0:
+        if not mask:
             mask.append(torch.cat((torch.ones(len(f)), torch.zeros(total_len - len(f)))))
         elif len(mask) == len(features) - 1:
             mask.append(torch.cat((torch.zeros(len(f)), torch.ones(total_len - len(f)))))
@@ -256,11 +256,11 @@ def test(model, data_loader, device: torch.device, epoch: int,
                            })
 
         df_proposal_group = df.groupby(['video_name'],
-                                       as_index=False).agg({'frame_label': lambda x: list(x),
-                                                            'proposal_scores': lambda x: list(x),
-                                                            'interpolated_wt_cam': lambda x: list(x),
-                                                            'interpolated_t_cam': lambda x: list(x),
-                                                            'all_attentions': lambda x: list(x), }
+                                       as_index=False).agg({'frame_label': list,
+                                                            'proposal_scores': list,
+                                                            'interpolated_wt_cam': list,
+                                                            'interpolated_t_cam': list,
+                                                            'all_attentions': list, }
                                                            )
         df_proposal_group["sequence_length"] = df_proposal_group.apply(lambda x: list(range(len(x.frame_label))), axis=1)
         df_proposal_group = df_proposal_group.sample(32)
@@ -315,7 +315,7 @@ def custom_collate(batch: torch.Tensor) -> List[torch.Tensor]:
 
 
 def load_data(args):
-    train_ds = XDViolence(data_path=args.data_path, test_mode=False, max_seqlen=args.max_seqlen,
+    train_ds = XDViolence(data_path=args.data_path, max_seqlen=args.max_seqlen,
                           sample_num=args.num_samples, sample_window=args.sample_window)
     test_ds = XDViolence(data_path=args.data_path, test_mode=True, sample_num=args.num_samples)
     return train_ds, test_ds
